@@ -215,7 +215,7 @@ border-bottom: 40px solid #ff0000;
 * 内部样式表，将 css 代码放在 <head> 标签内部 
 
 * 内联样式，将 css 样式直接定义在 HTML 元素内部 
-* 
+ 
 
 ### 47 rgba()和 opacity 的透明效果有什么不同？ 
 
