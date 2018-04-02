@@ -168,3 +168,32 @@ border-left: 40px solid transparent;
 border-right: 40px solid transparent;
 border-bottom: 40px solid #ff0000;
 ```
+
+### 17 display:none与visibility：hidden的区别？
+
+* display：none 不显示对应的元素，在文档布局中不再分配空间（回流+重绘）
+
+* visibility：hidden 隐藏对应元素，在文档布局中仍保留原来的空间（重绘）
+
+
+
+### 42 png、jpg、gif 这些图片格式解释一下，分别什么时候用。有没有了解过webp？
+
+* png是便携式网络图片（Portable Network Graphics）是一种无损数据压缩位图文件格式.优点是：压缩比高，色彩好。 大多数地方都可以用。
+
+* jpg是一种针对相片使用的一种失真压缩方法，是一种破坏性的压缩，在色调及颜色平滑变化做的不错。在www上，被用来储存和传输照片的格式。
+
+* gif是一种位图文件格式，以8位色重现真色彩的图像。可以实现动画效果.
+
+* webp格式是谷歌在2010年推出的图片格式，压缩率只有jpg的2/3，大小比png小了45%。缺点是压缩的时间更久了，兼容性不好，目前谷歌和opera支持。
+
+
+### 44 CSS属性overflow属性定义溢出元素内容区的内容会如何处理?
+
+* 参数是scroll时候，必会出现滚动条。
+
+* 参数是auto时候，子元素内容大于父元素时出现滚动条。
+
+* 参数是visible时候，溢出的内容出现在父元素之外。
+
+* 参数是hidden时候，溢出隐藏。
