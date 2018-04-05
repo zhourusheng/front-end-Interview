@@ -12,3 +12,30 @@
 <meta name="author" content="QST青软实训"/>
 <meta name="robots" content="all"/>
 ```
+
+### 图片热区连接
+```
+<img src="images/logo.jpg" usemap="#myMap" border="0"/>
+<map name="myMap">
+  <area shape="circle" coords="32,35,31" href="http://www.itshixun.com" />
+  <area shape="rect" coords="62,8,103,66" href="http://www.itoffer.cn" />
+  <area shape="poly" coords="114,73,133,11,107,11" href="#" />
+</map>
+```
+
+### 单行文本框
+```
+<input type="text"/> <br/><br/>
+<input type="text" name="userName" id="userName" value="请输入用户名"/><br/>
+<input type="text" value="请输入用户名" size="25" maxlength="10" /><br/><br/>
+<input type="text" value="请输入用户名" disabled="disabled"/><br/><br/>
+<input type="text" value="请输入用户名" readonly/>
+```
+
+### input 按钮控件
+```
+<input type="submit" value="提交按钮" name="btnSubmit" onClick="return false;"/>
+<input type="reset" value="重置按钮" name="btnReset"/>
+<input type="button" value="普通按钮" name="btnNormal" onClick="alert('可以调用JavaScript脚本!')"/>
+<input type="image" src="../images/imageButton.jpg"  width="100" onClick="return false;"/>
+```
