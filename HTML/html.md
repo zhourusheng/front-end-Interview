@@ -1,16 +1,23 @@
 ### 文档声明 !DOCTYPE
+<<<<<<< HEAD
 ```
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 ```
 
 ### meta 标签
 ```
+=======
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+### meta 标签
+>>>>>>> d0434f95f5b402a386b9b67f944faac71cdcfd3c
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Refresh" Content="5;url=http://www.itshixun.com" />
 <meta name="keywords" content="漫步时尚广场,时尚,购物,影视,餐饮"/>
 <meta name="description" content="游客漫步在时尚广场,可漫步湖畔步行街,可在国际名品店、时尚精品店徜徉,在电影城感受视听震撼,在酒吧一条街放松身心,在世界特色餐厅享受美味。 "/>
 <meta name="author" content="QST青软实训"/>
 <meta name="robots" content="all"/>
+<<<<<<< HEAD
 ```
 
 ### 图片热区连接
@@ -39,3 +46,5 @@
 <input type="button" value="普通按钮" name="btnNormal" onClick="alert('可以调用JavaScript脚本!')"/>
 <input type="image" src="../images/imageButton.jpg"  width="100" onClick="return false;"/>
 ```
+=======
+>>>>>>> d0434f95f5b402a386b9b67f944faac71cdcfd3c
