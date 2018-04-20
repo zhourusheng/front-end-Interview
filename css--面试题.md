@@ -25,8 +25,6 @@
 
 #### CSS选择符：
 
-* 通配符选择器
-
 * id选择器(#myid)
 
 * 类选择器(.myclassname)
@@ -205,6 +203,8 @@ border-bottom: 40px solid #ff0000;
 * 参数是auto时候，子元素内容大于父元素时出现滚动条。
 
 * 参数是visible时候，溢出的内容出现在父元素之外。
+* 
+* 参数是hidden时候，溢出内容会隐藏。
 
 
 
@@ -240,3 +240,4 @@ border-bottom: 40px solid #ff0000;
  
 * 浏览器的默认字体高都是16px。所以未经调整的浏览器都符合: 1em=16px。那么12px=0.75em, 
 10px=0.625em。 
+
