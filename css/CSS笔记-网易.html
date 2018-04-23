@@ -1,0 +1,372 @@
+
+float 属性
+	1.默认宽度为内容宽度；
+	2.脱离文档流；
+	3. 向指定方向移动；
+
+
+clear 属性：
+	clear: none(默认)、both、left、right、inherit(继承)
+
+clear：应用于浮动元素的后续元素；
+	   应用于块级元素；
+
+clear使用方法：
+	1.空白元素
+	2.clearfix （通用清除浮动的方式，新方法）
+
+clearfix:
+	<style type="text/css">
+		.clearfix:after{content: '.';display: block;clear: both;height: 0;overflow: hidden;visibility: hidden;}
+		.clearfix{zoom:1;} /*IE低版本不支持after属性；*/
+	</style>
+   
+
+两列布局：
+	<style type="text/css">
+		.side{float: right; width: 200px;}
+		.main{float: left; width: 300px;}
+		.clearfix:after{content: '.';display: block;clear: both;height: 0;overflow: hidden;visibility: hidden;}
+	</style>
+
+	<div class="body clearfix">
+		<div class="main">main</div>
+		<div class="side">side</div>
+	</div>
+   
+
+	Flex 弹性布局
+特点： 1.多行自适应
+	   2.多列自适应
+	   3.间隔自适应
+	   4.任意对齐；
+
+
+创建弹性容器 flex container
+	display设置为flex;
+
+flex item: 弹性元素
+	在文档流中的子元素才称为 弹性元素；
+
+<div style="display: flex;">
+	<div style="position: absolute;"></div>  绝对定位脱离文档流，不属于弹性元素
+	<div>
+		<div>grandson</div>
+		孙元素，不属于弹性元素
+	</div>
+</div>
+
+
+flex 弹性布局方向
+
+	flex-direction :设置弹性元素排列的方向
+
+	flex-direction: row  行排列，从左至右；(默认)
+					row-reverse  反向行排列，从右至左；
+					column  列，从上至下；
+					column-reverse  反向列，从下至上；
+
+
+	flex-wrap：设置弹性元素换行方式
+
+	flex-wrap：	nowrap 不换行，进行收缩（默认）
+				wrap 换行
+				wrap-reverse 反向换行
+
+
+	flex-flow  是 flex-direction 和 flex-wrap 属性的复合属性
+
+	order：设置弹性元素排列次序
+		取值为整数，初始值0
+
+
+弹性相关属性：
+	flex-basis: 设置弹性元素 flex-item的基础宽高
+
+	flex-basis:main-size 主轴的宽度（默认值）
+			   width
+
+
+	flex-grow:设置元素在剩余空间中所能分到的比例，非常重要！！
+			取值为整数，初始值0；  伸展因子
+
+	flex-shrink: 将负的剩余空间进行分匹配
+			取值为整数，初始值1；  收缩因子
+
+	flex：将flex-basis flex-grow flex-shrink 集合
+
+
+对其相关的属性：
+	
+	justify-content:设置 main-axis 主轴上的对齐方式；
+
+			justify-content: flex-start（默认值）对齐在左边
+							 flex-end 对齐在右边
+							 center  对齐在中间
+							 space-between  中间间隔平分
+							 space-around  收尾也会被平分
+
+	align-items：设置 cross-axis 辅轴上的对齐方式
+
+		align-items：flex-start  垂直方向居上对其
+					 flex-end  垂直方向居下对齐
+					 center  垂直方向居中对齐
+					 baseline  基线对齐
+					 streth  垂直方向拉伸，充满辅轴
+
+	align-self：设置单个flex item元素 在cross-axis 辅轴上的对齐方式
+
+		align-self： auto
+					 flex-start  垂直方向居上对其
+					 flex-end  垂直方向居下对齐
+					 center  垂直方向居中对齐
+					 baseline  基线对齐
+					 streth  垂直方向拉伸，充满辅轴
+
+	align-content: 设置cross axis上行对齐方式
+					flex-start
+					flex-end
+					center
+					space-between
+					space-aruond
+					stretch
+					
+
+
+	三行两列自适应 flex布局
+
+
+
+
+css变形 
+	
+	transform语法：
+		transform: none/<transform-function>+
+
+		transform-function：
+		
+		1.rotate()
+			rotate(angle)
+		页面旋转180°
+		<body style="transform: rotate(180deg);"></body>
+
+		2.translate
+			translate(<translate-value>/[<translate-value>]?)
+		等价于
+			translateX(<translate-value>）
+			translateY(<translate-value>）
+
+		例如：
+			transfrom:translate(50px);   X轴偏移50px
+			transfrom:translate(50px,20%);  X轴偏移50px,Y轴偏移盒子高度的20%；
+
+			transfrom:translateX(-50px);
+			transfrom:translateY(20%);
+
+		3.scale() 缩放
+			scale(<number>/[<number>]?) 第二值y轴缩放，若不填默认与第一个值相等
+
+			等价于
+			scaleX(<number>)
+			scaleY(<number>)
+
+		4.skew() 倾斜
+			skew(<angle>[,<angle>]?)
+				angle1: Y轴 往 X轴方向倾斜，
+				angle2: X轴往Y轴方向倾斜，若不写则表示不倾斜
+
+			等价于
+			skewX(<angle>)
+			skewY(<angle>)
+
+	transform:<transform-function>+    可以多个功能组合
+		<transform: translate(50%) rotate(45deg)>
+		先向X轴正方向移动50%，再旋转45°
+
+		<transform: rotate(45deg) translate(50%)>
+		先旋转45°，再向X轴正方向移动50%
+
+		注意：写的顺序不一样，效果不一样
+
+
+	transform-origin 属性实例设置旋转元素的基点位置
+
+		<transform-origin: 50% 50%;>
+		transform-origin的默认值，形状的中心点
+
+		<transform-origin: 0 0;> 形状左上角
+
+		<transform-origin: 20%;>  y坐标没写时，是默认值50%
+
+		<transform-origin: right 50px 20px;>
+				当写三个值时，分别表示x y z轴上的值
+				此时是一个3D坐标，x轴移动到最右边
+				Y轴向下移50px z轴正方向移动 20px;
+
+		<transform-origin: top right 20px;>
+				top 坐标点在容器顶部
+				right 水平坐标在最右边
+				z轴正方向移动 20px;
+
+
+
+CSS 3d变形
+		1.perspective 透视效果,属性定义 3D 元素距视图的距离，以像素计
+
+		<perspective: none/ length>
+		none:不做透视
+
+		<perspective: 2000px;> 人眼到物体的距离
+		<perspective: 500px;>  透视效果更佳明显
+
+		2.perspective-origin 设置透视角度
+
+		<perspective-origin: 50% 50%> 正中间进行透视,属性的默认值
+		<perspective-origin: left bottom> 
+		左下角进行透视
+
+		<perspective-origin: 50% -800px;> 
+		x轴 50%正中间位置， y轴 -800px 在上面
+
+		<perspective-origin: right>
+		y 默认50%, X轴右边，在右边中间位置进行透视
+
+
+		3.translate3d() 3d空间移动，比translate多了z轴
+
+		语法：translate3d(<translation-value>,<translation-value>,<length>)
+
+		等价于
+		translateX(<translation-value>)
+		translateY(<translation-value>)
+		translateZ(<length>)
+
+
+		transfrom:translate3d(10px 20% 50px);
+			x 10px, y 20%, z 50px;
+
+		transfrom:translateX(10px)
+
+		transfrom:translateY(20%)
+
+		transfrom:translateZ(-100px)  凹进去，离你远了变小
+
+		 4.scale3d()
+
+		 语法：scale3d(<number>,<number>,<number>)
+
+		 等价于
+		 scaleX(<number>)
+		 scaleY(<number>)
+		 scaleZ(<number>)
+
+		 transform:scale3d(1.2 1.2 1);
+		 	x 放大1.2倍 ,y 放大1.2倍 ,z 不变；
+		 transform:scale3d(1.2 1.2 1);
+		 	x 不变 ,y 放大1.2倍 ,z 不变；
+		 transform:scale3d(1 1.2 1);
+		    x 不变 ,y 放大1.2倍 ,z 不变；
+
+
+		 5.rotate3()
+
+		 语法：rotate3d(<number>，<number>，<number>，<angle>)
+		 	等价于
+		 	rotateX(<angle>)
+		 	rotateY(<angle>)
+		 	rotateZ(<angle>)
+
+		 transform:rotate3d(1,0,0,45deg)
+		 以(1,0,0)与(0,0,0)的连线为轴线，旋转45°
+
+
+		 6.transform-style 属性规定如何在 3D 空间中呈现被嵌套的元素。
+
+		 语法: <transform-style:float/preserve-3d>
+
+		 float:	子元素将不保留其 3D 位置,变成扁平化
+
+		 perserve-3d: 子元素将保留其 3D 位置。
+
+
+		 7.backface-visibility 属性定义当元素不面向屏幕时是否可见,旋转的扑克牌。
+
+		 语法：<backface-visibility:visible/hidden>
+
+		 visible:	背面是可见的
+		 hidden: 背面是不可见的。
+
+
+
+
+CSS 动画
+		1.transition-property 把鼠标指针放到 div 元素上，会产生带有平滑改变元素宽度的过渡效果;
+
+		语法：transition-property: none/<single-transition-property>
+
+				<single-transition-property>= all / <IDENT>
+
+				none:没有属性会获得过渡效果。
+				all:所有属性都将获得过渡效果。
+
+
+			<transition-property:left;>    left发生变化时，有动画效果
+
+			<transition-property:left,color;> 可以写多个值，用逗号,隔开；
+				left发生变化时，有动画效果；color 发生变化时也有动画效果；
+
+
+		2.transition-duration  属性规定完成过渡效果需要花费的时间（以秒或毫秒计）。
+
+		语法：<transition-duration: time [<time>]>
+
+
+		3.transition-timing-function  属性规定过渡效果的速度曲线。该属性允许过渡效果随着时间来改变其速度。
+			动画变换中采用：加速或减速 效果；
+
+			语法：transition-timing-function:<single-transition-timing-function>
+				<single-transition-timing-function>=
+					linear/ease/ease-in/ease-out/ease-in-out/cubic-bezier(n,n,n)
+					step-start/step-end
+
+	linear	规定以相同速度开始至结束的过渡效果（等于 cubic-bezier(0,0,1,1)）。
+	ease	规定慢速开始，然后变快，然后慢速结束的过渡效果（cubic-bezier(0.25,0.1,0.25,1)）。 默认值！！
+	ease-in	规定以慢速开始的过渡效果（等于 cubic-bezier(0.42,0,1,1)）。
+	ease-out	规定以慢速结束的过渡效果（等于 cubic-bezier(0,0,0.58,1)）。
+	ease-in-out	规定以慢速开始和结束的过渡效果（等于 cubic-bezier(0.42,0,0.58,1)）。
+	cubic-bezier(n,n,n,n)	在 cubic-bezier 函数中定义自己的值。可能的值是 0 至 1 之间的数值。
+
+
+		4.transtion-delay 属性规定过渡效果何时开始。设置延时效果 
+		语法：transtion-delay:<time>
+
+
+		5.transition：以上属性的集合
+
+
+ 
+	1.animation 设置多点，多帧动画
+
+		animation 属性是一个简写属性，用于设置六个动画属性：
+			animation-name
+			animation-duration
+			animation-timing-function
+			animation-delay
+			animation-iteration-count
+			animation-direction
+		注释：请始终规定 animation-duration 属性，否则时长为 0，就不会播放动画了
+
+
+			<animation-duration: time > 规定完成动画所花费的时间，以秒或毫秒计
+			<animation-timing-function: >  规定动画的速度曲线。
+			<animation-iteration-count: > 	规定动画应该播放的次数
+			<animation-direction: > 规定是否应该轮流反向播放动画。
+			<animation-play-state: running/paused > 规定动画的状态，运行或暂停。
+
+			<animation-delay: time>  规定在动画开始之前的延迟
+
+			<animation-name: >  规定需要绑定到选择器的 keyframe 名称。
+
+			<animation-fill-mode >  规定动画  开始时是否保持 第一帧动画
+											  结束时是否保持 最后一帧动画
+											  

@@ -1,0 +1,430 @@
+第一节 JS简介
+
+	1.JS特点
+		运行环境:浏览器
+		解释型语言，不需要编译连接
+
+	2.写出1-9999的数字
+
+	3.DOM 文档对象模型
+
+
+第四节 JS基本类型
+	1.number: 
+		整数
+			十进制 
+			八进制 0开头
+			十六进制 0x开头
+
+		浮点数
+			小数 1.2
+			1.4E2
+
+		特殊值
+			NaN 
+			Infinity
+
+
+
+	2.String 字符串
+
+	3.Boolean : true ;false
+
+	4.Object: 是一组无序的名值的集合
+
+	5.null
+
+	6.undefined
+
+	7.类型辨别 typeof
+
+	8.原始类型和引用类型;
+
+
+第五节   运算符和表达式
+
+	1.对象操作符： new delect . []
+					instanceof in
+
+	
+
+第六节 语句
+	一.条件语句 
+		1.if /  if..else  /  if..else if...else
+		2.swith(){
+			case1: 
+			break;
+
+			case1: 
+			break;
+
+			default:
+		}
+
+	二 循环语句
+		1.while(){}
+		2.do{}while() 至少被执行一次
+		3.for(初始值;循环条件;更新表达式){}
+		4.break 跳出整个循环， continue 跳出单次循环
+		
+		5.for(属性名 in 对象){语句}
+
+		6.with(){}  语句用于设置代码在特定对象中的作用域。
+
+		7.异常捕获语句
+			try{
+				语句
+			}catch(exception){
+				语句
+			}finally{
+				语句
+			}
+
+
+第七节 数值
+		1. 取绝对值：Math.abs    // absolute
+		2. 四舍五入：Math.round()
+		3. 向上取整：Math.ceil()
+		4. 向下取整：Math.floor()
+		5.获取最大值：Math.max()
+		6.获取最小值：Math.min()
+
+		7.生成大于等于0，小于1的随机数: Math.random()
+
+		8.parseInt(string)   输出结果为整形，非数字后面全部忽略
+
+		9.parseFloat(string)  输出结果为浮点型
+
+		10.Number(value) 强制转为数字，只要是有非数字，则返回NaN
+
+		11.Number.toFixed(digits)  保留几位小数点
+			// (100.123).toFixed(2)  /100.12
+
+第八节 字符串
+		1.字符串长度 str.length 
+			// "abscd".length /5
+
+		2.返回指定位置的字符  str.charAt(index)
+			// "abcd".charAt(3) /d
+
+		3.从头查找指定字符 str.indexOf(searchValue)
+			//	"ab-cdef".indexOf("-") /2
+			说明：没有找到则返回-1
+
+		4.从尾查找指定字符 str.lastindexOf(searchValue)
+			//	"ab-cdef".lastindexOf("-") 
+			说明：没有找到则返回-1
+
+		5. str.search(regexp)   regexp正则
+			//"abc163".search(/[0-9]/)  /3  查找0-9数字
+			//"abc163".search(/[A-Z]/)  /-1 查找A-Z大写字母
+			说明：没有找到则返回-1
+
+		6. str.match(regexp)   regexp正则
+			//"abc163".match(/[0-9]/)  /["1"]    返回的值是个数组  
+			//"abc163".match(/[0-9]/g) /["1","6","3"]  g  global全局变量
+			说明：没有找到则返回null
+			
+		7. str.replace(regexp/substr,newstr/function)   替换字符串
+
+				"abc163".replace("163","###")    abc###
+				"abc163".replace(/[0-9]/,"#")    abc#63
+				"abc163".replace(/[0-9]/g,"#")	 abc###
+				"abc163".replace(/[0-9]/g,"")	 abc
+
+
+		8.str.substring(indexA[,indexB])   截取字符串, 注意参数传出入负数则自动转为0
+
+
+		9.str.slice()   截取字符串, 与substring 功能一样，但参数可以传入负数
+
+
+		10.str.substr(start[,length])  length代表截取的长度
+
+
+		11.str.split([separator][,limit])  separator代表分隔符,输出结果是 数组Array
+
+				"micro major".split("")   ["micro","major"]
+				"micro major".split("",1)   ["micro"]
+				"micro2major".split(/[0-9]/)   ["micro","major"]
+
+		12.str.toLowerCase()  字符串全部转为小写
+
+		13.str.toUpperCase()  字符串全部转为大写
+
+
+		14.String()  强制转为字符串，方法与Number()类似
+
+
+		15.字符串转义
+					使用反斜杠\表示
+					"micro\"major"    "micro"majo"
+					"micro\\major"	  "micro\major"
+					"micro\tmajor" 	  "micro   major"
+
+
+第九节 对象
+		
+		1.创建对象 var car=new Object()
+				   var  car={}
+
+
+		2.属性和方法 var car={
+						color:"red",
+						run: function(){alert("run")}
+					}
+
+			访问属性：car.color;
+					  car.run();
+					  car["color"];
+
+			增加属性：car.type = "suv";
+					  car.stop = function(){alert("stop")};
+
+			修改属性  car.color="white"
+
+			删除属性  delete car.color
+
+
+		3.obj.constructor  获取对象的构造方法 函数
+
+
+		4.obj.toString()   对象转成字符串
+
+		5.obj.valueOf()  获取对象的原始值
+
+		6.obj.hasOwnproperty  判断对象是否有某个属性  返回值 true 或false 
+
+
+
+
+
+第十节 数组Array
+
+		1.创建数组
+				var arr=new Array()
+				var arr=[]
+				var arr=[1,6,3]
+
+		2.arr.length  获取数组长度
+
+				var students = [
+					{id:1,score:80},
+					{id:2,score:50},
+					{id:3,score:70}
+				];
+
+		3.获取数组元素
+				使用索引	students[0]   		 {id:1,score:80}
+							students[0].score	 80
+
+
+		4.arr.indexOf(searchElement)  数组查找，没有则返回-1
+
+		5.arr.forEach(callback)  遍历数组并执行方法
+
+					每个成绩加5分
+					var editScore=function(item,index,array){
+						item.score += 5;
+					};
+					students.forEach(editScore);
+
+		6.arr.reverse  将数组顺序颠倒
+
+		7.arr.sort([compareFunction])   数组排序,参数 回调函数，是指数组排序的方法
+
+					var byScore = function(a,b){
+						return b.score-a.score   // 返回值<0  a排在b前，返回值>0  a排在b后，返回值=0,则a和b保持原有顺序
+					};
+
+					students.sort(byScore);   80 70 50
+
+
+		8.arr.push(element1,....,elementN)  已有的数组上，往后添加新的元素
+
+		9.arr.unshift(element1,....,elementN)  已有的数组上，往前添加新的元素
+
+		10.arr.shift()  取出并删除数组的第一个元素
+
+		11.arr.pop()  取出并删除数组的第一个元素
+
+		12.arr.splice(index,howMany[,element1...])  在指定位置删除 指定数量的元素，并且替换为
+
+			index 删除的位置
+			howMany 删除的数量，如果是0,则不删除只插入
+			element 插入的元素，可以不写
+
+
+		以上属性会改变原有数组
+
+
+		13.arr.slice(begin[,end])  截取一个数组片段，注意begin包含，end不包含
+
+		14.arr.concat(value1,..,valueN)  多个数组的连接
+
+		15.arr.join([separator])  数组内元素拼接
+
+		16.arr.map(callback) 
+
+		17.arr.reduce(callback)
+
+
+第十一节 函数
+		1.函数参数问题
+
+				a. 实参少于形参，少的则做undefined
+
+				b.实参多于形参，多则被放入arguments[]中
+
+				c.任意数量参数求和
+						<script type="text/javascript">
+							function add(){
+								var length = arguments.length,
+									sum = 0,
+									parameter;
+								for(var i = 0;i < length;i++){
+									parameter = arguments[i];
+									sum += parameter;
+								}
+								return sum
+							}
+
+							console.log(add(3,5,6,10,15,45))
+						</script>
+
+				d.参数类型为 原始值，为传递型，传入参数之后不会改变
+				  参数类型为 对象类型，为引用传递，传入参数之后会改变，有影响
+
+
+		2.作为对象属性 this
+
+
+第十二节 date日期
+		1.创建日期 
+			new Date()
+			new Date(year,month[,day[,hours[,minutes[,seconds[,mill]]]]])
+				
+				new Date(1972,11)  1972-12-01 00:00:00  注意月份从0开始
+
+		2.date.getxxx()  获取日期
+				FullYear
+				Month
+				Date
+				Hours
+				Minutes
+				Seconds
+				Mills
+
+		3.date.setxxx() 设置日期
+
+			求天数 new Date(2001,2,0)  2001-2-28 00:00:00
+
+			Date转Number   date.getTime()
+			Number转Date   date.setTime()
+
+
+第十三节 RegExp 正则表达式
+
+		1.描述字符串规则的表达式
+			构造：
+			/pattern/attrs
+			new RegExp(pattern,attrs)
+
+		2.regexpObj.test(str)  检测正则表达式与指定字符串是否匹配
+
+		3.锚点 在字符串中匹配一个位置
+			
+			^ 起始位置 /^http:/
+			$ 结尾位置 /\.jpg$/
+			\b 单词边界
+
+		4.字符类  匹配一类字符中的一个
+
+			[abc] a或b或c
+			[0-9] 一个数字
+			[a-z] 一个字母
+			.	  任意一个字符，除换行外
+			[^0-9]  非数字的一个字符  注意此处^ 表示非
+
+		5.元字符  具有特殊意义的字符，注意反斜杠
+			^ $ \b  起始位置 结束位置 边界
+			\d 等价于 [0-9]		\D 等价于[^0-9]
+			\s 	空白符  	    \S  
+			\w  [A-Za-z0-9]		\W
+
+		6.量词 表示出现的次数
+			{m,n} 出现m到n次
+			* {0,}  出现无穷次
+			? {0,1} 出现0次 或 1次
+			+ {1,}	出现1次或无穷次，至少出现一次
+
+		7.转义符  需要匹配的字符是元字符的情况下，添加反斜杠进行转义
+
+			/^http:\/\//  匹配 http://
+			/@163\.com$/  匹配 @163.com  点表示任意字符
+
+		8.多选分支  表示 或
+
+			/thi(c|n)k/  ===   /thi[cn]k/   多选分支 可以等价于 字符类
+
+			可以匹配 think或 thick
+
+			/\.(png|jpg|jpeg|gif)/
+
+		9.捕获  保存匹配的字符串，日后再用
+			()   捕获
+			(?:) 不捕获
+
+		10.str.macth()  用正则表达式获取字符串
+			<script type="text/javascript">
+				var rul = 'http://blog.163.com/album?id=1#comment';
+				var reg = /^(https?:)\/\/([^\/]+)(\/[^\?]*)?(\?[^#]*)?(#.*)?$/;
+				var arr = url.match(reg);
+				var protocol = arr[1];
+				var host = arr[2];
+				var pathname = arr[3];
+				var search = arr[4];
+				var hash = arr[5];
+			</script>
+
+		10.str.replace()  用正则表达式替换字符串   注意 g是全局模式  i不区分大小写
+			<script type="text/javascript">
+				var str = 'The price of potato is 5,the price of apple is 10.'
+				var newStr = str.replace(/(\d+)/g,'$1.00');
+				console.log(newStr);
+			</script>
+
+
+第十四节 JSON
+			JavaScript Object Notaition
+			轻量级 前后端数据交互 夸语言，特点属性名用双引号 "" 
+		
+		1. JSON.parse(text)  JSON 转 JS , IE6 IE7版本不支持
+
+
+		2.JSON.stringify(value) JS转JSON   序列化
+
+
+
+JS 进阶篇
+
+	第一节 类型进阶
+		1.隐式类型转换
+		  	number + string 时 ，number 将会被隐式转换为 string
+		  	其余操作（+ - * / %） string将会被隐式转换为 number  进行计算
+
+
+	第二节 函数进阶
+
+		1.函数定义方式
+				1.函数声明： 
+					function fun(){
+
+					}
+
+				2.函数表达式：
+					var fun1 = function(){
+				
+					}
+
+					
