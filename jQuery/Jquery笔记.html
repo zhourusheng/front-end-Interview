@@ -1,0 +1,479 @@
+
+第一章 jQuery选择的艺术
+
+2-4 Jquery 基本概念
+        window.jQuery === window.$
+
+        调用JQuery本身属性和方法
+        $.each()
+        $.noop
+        $.toArray() 
+
+
+        $('#myDiv')
+        $('.myClass')
+
+        JQuery对象 转换 原生DOM对象 
+        $(domObject)  jQuery Object
+
+2-5
+        
+        1.链式语法chaining
+        2.ready ready方法只会判断dom元素是否加载完毕，而不会等待图片、框架等内容的加载，这样响应就会快很多；
+
+            $(document).ready(function(){}) 等价于  $(function () { ... })
+
+            区别于 window.onload() 而onload事件，必须等待这些内容都加载完毕之后，才能触发；
+
+
+3-4 jQuery 选择器简介
+        $('#box1')
+        $('#box2')
+        $('.box')
+        $('[name=username]')  //建议都使用单引号扩起字符串
+        $('div')
+        $(document.getElementById('box1'))
+
+        
+        类数组对象 和 数组对象
+
+
+3 jQuery 筛选器  过滤器
+        1.位置筛选器  jquery独有
+            :first  第一个元素
+            :last   最后一个元素 
+            :even   偶数元素，从0开始
+            :odd    奇数元素
+            :eq(index)  等于index的元素  //index只能为具体数值，不能为表达式
+            :gt(index)  大于index的元素  //没有大于等于 或小于等于
+            :lt(index)  小于index的元素
+
+        2.子元素筛选器
+            :first-child
+            :last-child
+            :first-of-type
+            :last-of-type
+            :nth-child(2)
+            :nth-child(2n)
+            :nth-child(odd)
+            :nth-child(even)
+
+
+        3.表单筛选器
+            :checked
+            :disabled
+            :enabled
+            :focus
+            :button
+            :checkbox
+            :file
+            :image
+            :input
+            :password
+            :radio
+            :reset
+            :selected
+            :submit
+            :text
+
+
+        4.内容筛选器
+            :empty  
+            :contains(text)   筛选文本
+            :has(selector)    筛选标签
+            :parent
+
+
+
+            :lang(language)   选择指定语言
+            :not(selector)     
+
+            :root       选择该文档的根元素  //1.9版本新增
+            :target     选择文档url 识别码  //1.9版本新增
+
+
+            :hidden     选择所有不可见元素,包括：display:none 不显示不占位
+                                                type:hidden
+                                        不包括：visibility:hidden 不显示 占位
+                                                opacity:0 
+
+            :visible    选中所有显示元素
+            :header     选中所有标题元素
+            :animated   选中所有动画效果正在执行的元素
+
+        5.jQuery 选择器优化
+        
+                尽量使用css中有的选择器
+                避免过度约束
+                尽量以ID开头
+                让选择器右边有更多特性
+                避免使用全局选择器
+                缓存选择结果
+
+
+
+第二章 jQuery DOM操作
+        
+    第一节 如何创建HTML
+        1.DOM对象 和 JQuery对象区别
+                检测DOM Object:  if(obj.nodeType)
+                检测jQuery Object:  if(obj.jquery)
+                
+                转换：
+                  DOM  var jqueryObj = $(domObj) 
+                  Jquery  var domObj = jqueryObj.get([index])
+
+        2.创建HTML元素
+            var div = $('<div>hello</div>')  //创建一个div
+            div.appendTo('body');       //将div 放入 body中
+        
+        3.创建HTML元素同时 添加属性
+            方法一：创建空属性
+            var link1 = $('<a>',{
+                text:'baidu',
+                href:'http://www.baidu.com',
+                target:'_blank',
+                title:'goto baidu'
+            });
+            link1.appenTo('body');
+
+            方法二：attr
+            var link2 = $('<a>baidu</a>').attr({
+                text:'baidu',
+                href:'http://www.baidu.com',
+                target:'_blank',
+                title:'goto baidu'
+            });
+            link2.appenTo('body');
+
+
+    第二节 检查和获取元素
+
+        1.获取jquery对象长度：$().length 
+        2.提取元素： [index] 返回DOM元素
+                     .get([index]) 返回DOM元素或元素集合，index 可为0或负数
+                     .eq([index]) 返回 JQuery对象
+                     .first() 获取到第一个元素
+                     .last() 获取到最后一个元素
+                     .toArray 和不加参数的.get()一样
+
+
+    第三节 通过关系查找Jquery对象的方法（一） 父子关系元素
+        
+        1. .children([selector])  获取jQuery对象所有子元素，selector是过滤筛选
+
+        2. .contents([selector])  返回jQuery对象所有文本节点
+
+        3. .find([selector])   最常用方法之一，通过选择器来筛选后代元素
+
+        4. .parent([selector])  单数,返回子元素的直接父元素
+        
+        5. .parents([selector])  获取jQuery对象所有父元素，selector是过滤筛选
+
+        6. .parentsUntil([selector])  获取子元素到某个层级的父元素，必须要带选择器
+
+        7. .closest(selector) 从元素开始逐级向上，返回最先匹配的元素，也能获取元素本身
+
+
+    第四节 通过关系查找Jquery对象的方法（二） 兄弟姐妹元素
+        
+        1  .next([selecotr])       向后查找
+
+        2  .nextAll([selecotr])    找到后面所有列表项
+
+        3  .nextUntil([selecotr])  
+
+        4  .prev([selecotor])   向前查找
+
+        5  .prevAll([selecotor])  向前查找所有列表项
+
+        6  .prevUnit([selecotor])
+
+        7  .siblings([selecotor])  取得元素的所有兄弟姐妹元素
+
+
+    第五节 筛选和遍历Jquery对象
+
+        1.添加元素
+            .add(selector)
+        2.删除元素
+            .not(selector)  参数不仅可是选择器，也可以是参数
+            .filter(selector) 筛选出和指定元素匹配的
+            .has(selector)  
+
+        3.获取子集
+            .slice(start[,end]) 选取匹配的子集  左闭右开，end不包含
+
+            .map(callback)  将一个Jquery对象转为另一个JQuery对象 
+
+        4.遍历所有元素
+            .each()
+
+    第六节 jquery对象其他操作
+
+        1. is(selector) 根据选择器、元素或者jQuery对象来检测匹配元素，如果至少有一个元素匹配给定参数，则返回true
+
+        2.end() 回到最近的破坏性操作之前，将匹配的元素集合还原到之前的操作状态。
+                破坏性操作：改变最开始的jQuery对象，在链式语法中非常有用
+
+        3.addBack([selector]) 
+
+
+第三章 对JQuery 对象属性、特性、以及数据的操作
+
+    第一节 操作元素的特性、属性和数据
+            1.特性attributes :值为 string
+              属性properties :值为 string boolean number object
+
+              js 原生获取方法：getAttribute()
+
+            
+    第二节 操作元素的特性
+
+        1.获取特性的值  attr(name)   只有一个参数
+          设置特性的值  attr(name,value)attr(attributes)  两个参数
+          删除特性的值  removeAttr(name)  可删除多个，用空格隔开
+
+
+    第三节 修改元素样式 addClass()
+
+        1.addClass(names)  增加类  可添加多个类，空格隔开
+
+        2.removeClass(names)  移除类
+
+        3.hasClass(name)   判断是否包含某个类
+
+        4.toggleClass()  切换类， 等价于使用 if() + hasClass() 的方法
+
+
+    第四节 修改元素样式 css()
+
+        1.批量增加属性的方法  
+            $('div').css({
+            'border-color':'red',
+            height:200px,
+            marginTop:100,
+            weith:'-=50'  //可以设置表达式
+        })
+        有横杠则要用''  等价于驼峰形式 单位默认为 px,可以不写
+
+
+    第五节 修改元素样式 width()
+
+        1.width()  height() 
+            获取宽度和高度，不包含padding border margin 
+
+        2.innerWidth()  innerHeight()
+            获取宽度和高度，包含padding  ,不包含border  margin 
+
+        3.outerWidth()  outerHeight()
+            获取宽度和高度，包含padding border , 不一定包含margin（传入参数为true则包含，为false则不包含）
+
+
+    第六节 修改元素样式 offset()
+
+        1.offset() 返回第一个元素位置(top left值)，进对可见元素有效
+
+        2.position()  返回相对父元素relative的位置
+
+        3.scrollLeft()  操作滚动条，相对左侧的偏移
+
+        4.scrollTop()  操作滚动条，相对顶部的偏移 ，比较常用
+
+
+    第七节 获取或修改元素内容
+
+        1.html() 获取html
+ 
+        2.html(content)  设置html
+
+        3.text()  获取文本，不包含html
+
+        4.text(content)  设置文本,不包含html
+
+
+
+第四章 JQuery对象文本处理
+    
+    第一节 移动和插入元素
+        
+        1.append(content...)  在元素内部最后面插入内容
+
+        2.prepend(content..)  在元素内部最前面插入内容
+
+        3.before(content...)  在元素外部最后面插入内容
+
+        4.after(content..)   在元素外部最前面插入内容
+
+    第二节 包裹元素
+        1.wrap(wraper)  可以传html 也可以传 JQuery对象
+
+        2.wrapAll(wraper)
+
+        3.wrapInner(wraper)
+
+        4.unwrap 移除包裹
+
+    第三节 移除元素
+        1.remove()  remove之后绑定的事件和数据会删除，本身并不会删除
+
+        2.detach()  和remove()功能一样，但移除之后会保留事件和数据
+
+        3.empty()  元素内容会清除干净
+
+
+    第四节 移除和替换元素
+        1.clone(Even[,deepEven])  元素的复制
+            Even 代表是否复制事件函数和数据
+            deepEven 是否深度复制，是否复制所有子元素的事件和数据   
+
+        2.replaceWith(content) 
+            将所有匹配的元素替换成指定元素
+
+        3.replceAll(targret)
+            
+        
+    第五节 处理表单元素
+
+        val(value)  设置值
+        val()  获取值    
+
+
+第五章  DOM事件模型
+
+    第一节 DOM 0级事件   缺陷：只能支持一个事件处理函数
+        1.0级事件模型
+            <input type="button" onclick="doSomething()">
+            input.onclick = function(){...}
+
+        2.事件冒泡
+            事件触发从子元素一直到父元素
+
+
+    第二节 DOM 2级事件
+        1.注册事件处理函数  同样会事件冒泡
+            addEvenListener(evenType,listener,useCapture)
+            evenType: 标准化事件类型  (click等  不需要加on)
+            listener: 事件处理函数
+            useCapture: 默认值false,只冒泡不捕获，值为true时，只捕获，不冒泡
+
+        2.针对旧版IE兼容性
+            attachEven(evenName,hander)
+
+    第三节 JQuery 事件处理模型
+
+        1.特点：标准名称，统一处理方法，允许多事件处理
+
+        2.添加事件处理函数
+            on(evenType[,selector][,data],hander)
+                
+                evenType:事件名称
+                selector：选择器，一般在事件委托中使用
+                data: 数据
+                hander: 时间处理函数
+
+        3.统一方法和属性
+            阻止冒泡：           stopPropagation()
+            阻止默认行为：       preventDefault()
+            阻止冒泡和默认行为： return false
+
+        4.JQuery 支持的所有事件
+                blur
+                change
+                click
+                dbclick
+                error
+                focus
+                focusin
+                focusout
+                keydown
+                keypress
+                keyup
+                load
+                unload
+                
+            鼠标事件
+                mousedown
+                mouseenter
+                mouseleave
+                mousemove
+                mouseout
+                mouseover
+                mouseup
+                ready
+
+            其他事件
+                resize
+                scroll
+                select
+                submit
+
+        5.一次性的事件处理
+            one(evenType[,selector][,data],hander)
+
+
+    第四节 事件移除
+
+        1.off(evenType[,selector][,hander])
+            若不传参数则默认将所有事件移除
+    
+    第五节 事件实例对象
+
+        1.事件实例对象属性
+            《书》p65
+        2.事件实例对象的方法
+            《书》p66
+
+    第六节 事件触发
+
+        1.trigger(eventType[,data])
+
+        2.triggerHandler(eventType[,data])
+            不会触发浏览器默认事件
+            不会事件冒泡
+            只触发jQuery对象集合中的第一个元素的事件处理函数
+            返回的是事件处理函数的返回值，而不是jQuery对象，不能使用链式语法
+
+        3.事件命名空间
+
+
+第六章 JQuery插件
+
+        1.jquery插件机制
+            扩展jquery对象上的方法：jquery.fn.extend()
+            扩展jquery工具的方法：jquery.extend()
+
+        2.寻找jquery插件
+                1.官网 http://www.plugins.jquery.com/
+                2.npm包管理工具：npmjs.org
+                3.GitHub: star watch fork
+                4.搜索引擎：直接搜索
+
+        3.引入插件
+            1.先引入jquery <script src="vendor/jquery-1.12.4.js"></script>
+            2.再引入下载好的插件<script src="vendor/jquery.easing.js"></script>
+            3.查看并实现示例代码
+            4.阅读文档        
+
+
+        4.几个简单插件的
+            1.chosen  https://github.com/harvesthq/chosen
+
+            2.pickadate  https://github.com/amsul/pickadate.js
+
+            3.Magnific-Popup https://github.com/dimsemenov/Magnific-Popup
+
+
+        5.如何编写jQuery插件   
+             插件命名：以jQuery开头
+             处理复杂插件：
+
+
+第六章 Jquery制作弹出层
+    
+        一.弹出层一些需求
+            1.背后灰色div遮罩，宽高100%，位置固定，遮挡背后内容，禁止用户点击
+            2.登录框层级较高，始终是居中
+            3.将弹出层进行封装
+
+            
