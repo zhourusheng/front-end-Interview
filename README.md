@@ -37,7 +37,7 @@
 ### Vue.js
 |name|description|
 |---|:---:|
-|[]()||
+|[前端知识点总结——Vue](https://mp.weixin.qq.com/s?__biz=MjM5NTEwMTAwNg==&mid=2650214253&idx=1&sn=e6190c51480d8450209cfd61ec066a44&chksm=befe0f4c8989865aa3cd6d090eda4a7284f0173a98ea516e742f521a6b8cb35192352f45d9a4&mpshare=1&scene=1&srcid=0322VCPHpOEVqBhIdwKrzkm9#rd)||
 |[]()||
 |[]()||
 |[]()||
@@ -54,7 +54,7 @@
 |[]()||
 
 
-### git
+### 前端综合开发
 |name|description|
 |---|:---:|
 |[]()||
@@ -63,10 +63,19 @@
 |[]()||
 |[]()||
 
+### git
+|name|description|
+|---|:---:|
+|[Git 的使用](https://mp.weixin.qq.com/s?__biz=MjM5NTEwMTAwNg==&mid=2650214008&idx=1&sn=1cb30e905e6e3b5493dc16e7e93e80be&chksm=befe0e598989874f8cd0c3c5ec9bed8d0269e99020b8a4fbd1a31a710d3225ff84a961d922d3&mpshare=1&scene=1&srcid=03220F57lYFM3vHFGyy1QTlS#rd)||
+|[]()||
+|[]()||
+|[]()||
+|[]()||
+
 ### webpack
 |name|description|
 |---|:---:|
-|[]()||
+|[Webpack 详解](https://mp.weixin.qq.com/s?__biz=MjM5NTEwMTAwNg==&mid=2650214382&idx=1&sn=c5fe67eb1c723f713c07c571041863a8&chksm=befe0fcf898986d95b80ec1f0386a6de8b32cf7a495a57332d651569de43102e0470e8b3dde2&mpshare=1&scene=1&srcid=0322gjaPDSISRPfptzzgL0aJ#rd)||
 |[]()||
 |[]()||
 |[]()||
