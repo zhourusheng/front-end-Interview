@@ -221,9 +221,31 @@
                 var listNode = document.getElementById('list');
 
                 // 向list 中插入个li 标签
+                // 创建代码片段
+                var frag = document.createDocumentFragment();
+                var x , li;
+                for(x = 10 ; x < 10; x++) {
+                	li = document.creatElement('li');
+                	li.innerHTML = " list item " + x;
+                	frag.appendChild(li);
+                }
                 
+                listNode.appendChild(frag);
             </script>
              
-            
+             * 事件节流
+            <script type="text/javascript">
+            	var textarea = document.getElementById('text');
+            	var timeoutId;
+            	// 监听键盘事件，若间隔小于100ms则不触发，进行性能优化
+            	textarea.addEventListener('keyup',function(){
+            		if(timeoutId) {
+                        clearTimeout(timeoutId)
+            		}
+            		timeoutId = setTimeout(function(){
+            			// 触发change事件
+            		}，100)
+            	})
+            </script>
 
 
