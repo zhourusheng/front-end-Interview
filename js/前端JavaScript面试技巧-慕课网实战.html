@@ -1,0 +1,229 @@
+第二章 JS基础知识（上）
+
+  2-1 变量类型和计算
+	  题目：
+	    1.JS中使用typeof能得到哪些类型
+	    2.何时使用 === ,何时使用 ==
+	    3.JS中有哪些内置函数
+	    4.JS变量按照存储方式区分为哪些类型，并描述其特点
+	    5.如何理解JSON
+
+	   知识点：
+	     1.变量类型
+	       值类型 vs 引用类型：对象、数组、函数
+	       typeof 运算符详解
+	     2.变量计算-强制类型转换
+	       字符串拼接
+	       == 运算符
+	       if 语句
+	       逻辑运算
+
+	     
+        题库：
+            1.值类型
+            <script>
+		     var a = 100
+		     var b = a
+		     a = 200
+		     console.log(b)   // 100
+		 	</script>
+
+		    2.引用类型,指针指向
+		    <script>
+		     var a = {age:20}
+		     var b = a  
+		     b.age = 21
+		     console.log(a.age)  // 21
+		     </script>
+
+		    3.typeof 运算符详解
+		    <script>
+		     typeof undefined  // undefined
+		     typeof 'abc'  // string
+		     typeof 123  // number
+		     typeof true  // boolean
+		     typeof {}  // object
+		     typeof []  // object
+		     typeof null  // object
+		     typeof console.log  // function
+		     </script>
+
+		    4.字符串拼接
+		    <script>
+		     var a = 100 + 10  // 110
+		     var b = 100 + '10'  // '10010'
+		     </script>
+
+		    5.== 运算符\
+		    <script>
+		     100 == '100'  // true
+		     0 == ''  // true       0 和 空字符串'' 都转换成false
+		     null == undefined  // true   null 和undefined 都转换成false
+		     </script>
+
+
+	
+  2-2 原型和原型链
+  	题目：
+  		1.如何判断一个变量是数组类型
+  		2.写一个原型链继承的例子
+  		3.描述 new 一个对象的过程
+  		4.zepto (或其他框架)源码中如何使用原型链
+
+  	知识点：
+  		1.构造函数
+  		2.构造函数-扩展
+  		3.原型规则和示例
+  		4.原型链
+  		5.instanceof
+
+  	题目：	
+  		1.构造函数-示例
+  		<script>
+  		function Foo(name,age) {
+			this.name = name
+			this.age = age
+			this.class = 'class-1'
+			// return this // 默认有这一行
+  		}
+  		var f = new Foo('zhangsan',20)
+  		// var f1 = new Foo('lisi',22) //创建多个对象
+  		</script>
+
+  			1.构造函数名称大写开头
+  			2.传入 name、age 两个参数
+  			3.this 进行赋值
+  			4.使用new方法 构造新实例
+  			   this变为空对象
+
+  		2.构造函数-扩展
+  			1.var a = {} 其实是 var a = new Object()的语法糖
+  			2.var a = [] 其实是 var a = new Array()的语法糖
+			3.function Foo(){...} 其实是 var Foo = new Function(...)
+			4.使用instanceof判断一个函数是否是一个变量构造函数
+
+		3. 5条原型规则（原型链基础）
+			规则一：所有的引用类型（数组、对象、函数），都具有对象特性，即可自由扩展属性（除"null"以外）
+
+			规则二：所有的引用类型（数组、对象、函数），都具有一个
+			_proto_属性，属性值是一个普通对象 （_proto_ 隐式原型）
+
+			规则三：所有的函数，都具有一个prototype属性，属性值是一个普通对象 （prototype 显式原型）
+
+			规则四：所有的引用类型（数组、对象、函数），_proto_属性值指向他的构造函数的"prototype"属性值
+
+			<script>
+				var obj = {}; obj.a = 100;  //一：可自由扩展属性
+				var arr = []; arr.a = 100;
+				function fn () {}
+				fn.a = 100;
+
+				console.log(obj._proto_); //二：_proto_ 隐式原型属性
+				console.log(arr._proto_);
+				console.log(fn._proto_);
+
+				console.log(fn.prototype) //三：prototype 显式原型属性
+
+				console.log(obj._proto_ === Object.prototype) //四
+			</script>
+
+			规则五：当试图得到一个对象的某个属性时，如果这个对象本身没有在这个属性，那么会去它的_proto_(即它的构造函数prototype)中寻找
+			
+			<script>
+				// 构造函数
+				function Foo(name,age) {
+					this.name = name
+				}
+				Foo.prototype.alertName = function () {
+					alert(this.name);
+				}
+				// 创建示例
+				var f = new Foo('zhangsan')
+				f.printName = function () {
+					console.log(this.name)
+				}
+				// 测试
+				f.printName()
+				f.alertName()
+			</script>
+
+        8-2 页面加载渲染过程
+
+            ### 加载一个资源的过程
+
+            * 浏览器根据DNS服务器得到域名的IP地址
+            * 向这个IP地址发送http请求
+            * 服务器收到、处理并返回http请求
+            * 浏览器得到返回内容
+
+            ### 浏览器渲染页面过程
+
+            * 根据HTML结构渲染DOM Tree
+            * 根据CSS生成CSSOM
+            * 将DOM 和 CSSOM整合成 Render Tree
+            * 将Render Tree 开始渲染展示
+
+
+        8-5 性能优化策略
+
+            ### 原则
+
+            * 多使用内存、缓存
+            * 减少CPU计算、减少网络请求
+            
+            ### 加载资源优化
+
+            * 静态资源合并压缩（图片压缩、cssjs压缩合并）
+            * 静态资源缓存
+            * 使用CDN加快速度
+            * 使用SSR后端渲染，数据直接输出到HTML中
+
+            ### 渲染优化
+
+            * CSS放前 JS放后
+            * 懒加载（图片懒加载，下拉更多）
+            * 减少DOM查询，对DOM做缓存
+            * 减少DOM操作，将多个操作尽量合并放一起执行
+            * 事件节流
+            * 尽早执行操作（如DOMContentLoaded）
+
+            
+            * 资源合并commonJS等构建工具可以实现
+            * 缓存，通过连接名称控制缓存，只有内容改变，连接名称才改变
+
+            *图片懒加载
+            <img id="img1" src="preview.png" data-realsrc="abc.png"/>
+            <script type="text/javascript">
+                var img1 = document.getElementById('img1');
+                img1.src = img1.getAttribute('data-realsrc');
+            </script>
+
+
+            * DOM做缓存
+            <script type="text/javascript">
+                // 未进行缓存
+                var i
+                for(i = 0 ; i < document.getElementsByTagName('p').length ; i++){
+                    // todo
+                }
+
+                // 进行DOM缓存
+                var Plist = document.getElementsByTagName('p');
+                var i
+                for(i = 0 ; i < Plist.length ; i++){
+                    // todo
+                }
+            </script>
+            
+
+            * 合并DOM插入
+            <script type="text/javascript">
+                var listNode = document.getElementById('list');
+
+                // 向list 中插入个li 标签
+                
+            </script>
+             
+            
+
+
