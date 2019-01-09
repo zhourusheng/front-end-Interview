@@ -18,7 +18,7 @@
 * join()后者是将数组转换成字符串 
 
 ### 4. 数组方法 pop() push() unshift() shift() 
-* Push()在数组尾部添加 
+* push()在数组尾部添加 
 * pop()在数组尾部删除 
 * Unshift()在数组头部添加 
 * shift()在数组头部删除 
